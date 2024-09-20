@@ -37,9 +37,8 @@ public class SistemaVotacaoPOO {
                         continue;
                     }
 
-                    // Cria um voto e registra
-                    Voto voto = new VotoSimples(eleitorId, candidatoId);
-                    voto.registrarVoto(votos);
+                    // Adiciona o voto no mapa de votos
+                    votos.put(candidatoId, votos.getOrDefault(candidatoId, 0) + 1);
                     System.out.println("Voto registrado com sucesso!");
                     break; // Sai do loop quando o voto é registrado com sucesso
 
@@ -53,14 +52,10 @@ public class SistemaVotacaoPOO {
         // Apuração dos resultados
         System.out.println("\nApuração dos resultados:");
 
-        Map<Integer, Integer> contagemVotos = new HashMap<>();
-        for (int idCandidato : votos.values()) {
-            contagemVotos.put(idCandidato, contagemVotos.getOrDefault(idCandidato, 0) + 1);
-        }
-
+        // Exibe os resultados para cada candidato (funcionário)
         for (Funcionario funcionario : funcionarios) {
             int candidatoId = funcionario.getId();
-            int totalVotos = contagemVotos.getOrDefault(candidatoId, 0);
+            int totalVotos = votos.getOrDefault(candidatoId, 0);
             System.out.println(funcionario.getNome() + " recebeu " + totalVotos + " votos.");
         }
 
