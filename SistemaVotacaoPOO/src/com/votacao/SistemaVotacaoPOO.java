@@ -59,6 +59,11 @@ public class SistemaVotacaoPOO {
             System.out.println(funcionario.getNome() + " recebeu " + totalVotos + " votos.");
         }
 
+        // Adiciona um prompt para evitar que o programa feche imediatamente
+        System.out.println("\nAperte Enter para encerrar o programa...");
+        scanner.nextLine(); // Limpa o buffer após a leitura dos números
+        scanner.nextLine(); // Espera o usuário apertar Enter
+
         scanner.close();
     }
 }
